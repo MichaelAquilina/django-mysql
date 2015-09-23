@@ -29,7 +29,7 @@ then
     sudo apt-get -y remove mysql-server
     sudo apt-get -y autoremove
     sudo apt-get update
-    yes Y | sudo apt-get -y install mysql-server
+    yes Y | sudo apt-get -y --force-yes install mysql-server
   fi
 
 elif [[ $DB == 'mariadb' ]]
