@@ -24,8 +24,8 @@ then
     yes Y | sudo apt-get -y install mysql-server
   elif [[ $DB_VERSION == '5.7' ]]
   then
-    sudo echo 'deb http://repo.mysql.com/apt/ubuntu/ precise mysql-5.7-dmr' | sudo tee /etc/apt/sources.list/mysql.list >/dev/null
-    sudo echo 'deb-src http://repo.mysql.com/apt/ubuntu/ precise mysql-5.7-dmr' | sudo tee -a /etc/apt/sources.list/mysql.list >/dev/null
+    sudo echo 'deb http://repo.mysql.com/apt/ubuntu/ precise mysql-5.7-dmr' | sudo tee /etc/apt/sources.list.d/mysql.list >/dev/null
+    sudo echo 'deb-src http://repo.mysql.com/apt/ubuntu/ precise mysql-5.7-dmr' | sudo tee -a /etc/apt/sources.list.d/mysql.list >/dev/null
     sudo apt-get -y remove mysql-server
     sudo apt-get -y autoremove
     sudo apt-get update
