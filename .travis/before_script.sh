@@ -14,11 +14,20 @@ then
   if [[ $DB_VERSION == '5.5' ]]
   then
     sudo service mysql start || true  # Travis default installed version
-  else
+  elif [[ $DB_VERSION == '5.6' ]]
+  then
     sudo apt-get -y remove mysql-server
     sudo apt-get -y autoremove
     sudo apt-get -y install software-properties-common
     sudo add-apt-repository -y ppa:ondrej/mysql-5.6
+    sudo apt-get update
+    yes Y | sudo apt-get -y install mysql-server
+  elif [[ $DB_VERSION == '5.7' ]]
+  then
+    sudo echo 'deb http://repo.mysql.com/apt/ubuntu/ precise mysql-5.7-dmr' | sudo tee /etc/apt/sources.list/mysql.list >/dev/null
+    sudo echo 'deb-src http://repo.mysql.com/apt/ubuntu/ precise mysql-5.7-dmr' | sudo tee -a /etc/apt/sources.list/mysql.list >/dev/null
+    sudo apt-get -y remove mysql-server
+    sudo apt-get -y autoremove
     sudo apt-get update
     yes Y | sudo apt-get -y install mysql-server
   fi
