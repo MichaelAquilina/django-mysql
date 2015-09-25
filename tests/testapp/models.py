@@ -7,7 +7,7 @@ from django.db.models import (
 from django.utils import timezone
 
 from django_mysql.models import (
-    Bit1BooleanField, ListCharField, ListTextField, Model,
+    Bit1BooleanField, JSONField, ListCharField, ListTextField, Model,
     NullBit1BooleanField, SetCharField, SetTextField, SizedBinaryField,
     SizedTextField
 )
@@ -196,6 +196,10 @@ class Bit1Model(Model):
 
 class NullBit1Model(Model):
     flag = NullBit1BooleanField()
+
+
+class JSONModel(Model):
+    attrs = JSONField()
 
 
 # For cache tests
