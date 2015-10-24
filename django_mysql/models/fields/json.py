@@ -14,7 +14,7 @@ __all__ = ('JSONField',)
 class JSONField(field_class(TextField)):
     def __init__(self, *args, **kwargs):
         if 'default' not in kwargs:
-            kwargs['default'] = lambda: {}
+            kwargs['default'] = dict
         super(JSONField, self).__init__(*args, **kwargs)
 
     def deconstruct(self):
@@ -37,7 +37,6 @@ class JSONField(field_class(TextField)):
         return value
 
     def get_prep_value(self, value):
-        print dir(json)
         if not isinstance(value, six.string_types):
             return json.dumps(value)
         return value
